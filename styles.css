@@ -28,6 +28,7 @@ a {
 
 
 .login-container {
+    position: relative;
     height: 480px;
     width: 768px;
     border-radius: 12px;
@@ -48,15 +49,18 @@ a {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    background-color: var(--secundary-color);
     padding: 55px 0;
+    transition: 1s;
 }
 
-.form-login {}
+.login-container.move .form-login {
+    transform: translateX(100%);
+}
 
 .form-title {
     font-size: 3rem;
     font-weight: 400;
-    color: var(--text-color-dark);
 }
 
 .form-social {
@@ -116,5 +120,111 @@ a {
 }
 
 .form-register {
+    transform: translateX(-100%);
+    z-index: -1;
+    opacity: 0;
+}
+
+.login-container.move .form-register {
+    transform: translateX(0%);
+    z-index: 1;
+    opacity: 1;
+}
+
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: aqua;
+    color: var(--text-color-light);
+    text-align: center;
+    transform: translateX(100%);
+    z-index: 10;
+    transition: 1s;
+}
+
+.login-container.move .overlay-container {
+    transform: translateX(0%);
+}
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 40px;
     background-color: var(--primary-color);
+    transition: 1s;
+}
+
+.login-container.move .overlay:nth-child(2) {
+    opacity: 0;
+    z-index: -1;
+}
+
+.form-title-light {
+    color: var(--text-color-light);
+}
+
+.form-button-light {
+    border: 2px solid var(--secundary-color);
+    color: var(--text-color-light);
+}
+
+.mobile-text {
+    display: none;
+}
+
+@media (max-width:768px) {
+    .login-container {
+        width: 75vw;
+        height: 75vh;
+    }
+
+    .overlay-container {
+        display: none;
+    }
+
+    .form {
+        width: 100%;
+    }
+
+    .form-register {
+        position: absolute;
+        background-color: var(--primary-color);
+        color: var(--secundary-color);
+        transform: translateX((100%));
+    }
+
+    .login-container.move .form-register {
+        transform: translateX(0%);
+    }
+
+    .form-button {
+        background-color: var(--primary-color);
+        color: var(--secundary-color);
+        border: 2px solid var(--secundary-color);
+    }
+
+    .mobile-text {
+        display: block;
+    }
+
+    .mobile-text a{
+        font-weight: 900;
+        color: inherit;
+    }
+}
+
+@media (max-width:480px){
+    .login-container {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+    }
 }
