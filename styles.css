@@ -31,7 +31,7 @@ a {
     width: 768px;
     border-radius: 12px;
     box-shadow: 0 5px 20px #a0a0a0;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .form-container {
@@ -203,23 +203,28 @@ a {
         height: 75vh;
     }
 
+    .form-container {
+        width: 100%;
+    }
+
     .overlay-container {
         display: none;
-    }
+    } 
 
     .form {
         width: 100%;
+        transition: 1s;
     }
 
     .form-register {
         position: absolute;
         background-color: var(--primary-color);
         color: var(--secundary-color);
-        transform: translateX((100%));
+        transition: 1s;
     }
-
+    
     .login-container.move .form-register {
-        transform: translateX(0%);
+        transform: translateX(-100%);
     }
 
     .form-button {
