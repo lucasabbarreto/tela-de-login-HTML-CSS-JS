@@ -25,8 +25,6 @@ a {
     color: var(--text-color-dark);
 }
 
-
-
 .login-container {
     position: relative;
     height: 480px;
@@ -37,25 +35,43 @@ a {
 }
 
 .form-container {
+    position: relative;
     height: 100%;
-    width: 100%;
+    width: 50%;
     display: flex;
+    background-color: var(--secundary-color);
+    transition: 1s;
+}
+
+.login-container.move .form-container {
+    transform: translateX(100%);
 }
 
 .form {
+    position: absolute;
     height: 100%;
-    width: 50%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--secundary-color);
     padding: 55px 0;
-    transition: 1s;
+    transition-delay: .25s;
+}
+
+.form-register {
+    opacity: 0;
+    z-index: -1;
 }
 
 .login-container.move .form-login {
-    transform: translateX(100%);
+    opacity: 0;
+    z-index: -1;
+}
+
+.login-container.move .form-register {
+    opacity: 1;
+    z-index: 1;
 }
 
 .form-title {
@@ -119,16 +135,8 @@ a {
     color: var(--text-color-light);
 }
 
-.form-register {
-    transform: translateX(-100%);
-    z-index: -1;
-    opacity: 0;
-}
-
-.login-container.move .form-register {
-    transform: translateX(0%);
-    z-index: 1;
-    opacity: 1;
+.login-container.move .form-container {
+    transform: translateX(100%);
 }
 
 .overlay-container {
@@ -137,11 +145,11 @@ a {
     left: 0;
     width: 50%;
     height: 100%;
-    background-color: aqua;
     color: var(--text-color-light);
+    background-color: var(--primary-color);
     text-align: center;
     transform: translateX(100%);
-    z-index: 10;
+    z-index: 1;
     transition: 1s;
 }
 
@@ -158,11 +166,20 @@ a {
     justify-content: space-evenly;
     align-items: center;
     padding: 40px;
-    background-color: var(--primary-color);
     transition: 1s;
 }
 
-.login-container.move .overlay:nth-child(2) {
+.first-overlay {
+    opacity: 0;
+    z-index: -1;
+}
+
+.login-container.move .first-overlay {
+    opacity: 1;
+    z-index: 1;
+}
+
+.login-container.move .second-overlay {
     opacity: 0;
     z-index: -1;
 }
@@ -215,13 +232,13 @@ a {
         display: block;
     }
 
-    .mobile-text a{
+    .mobile-text a {
         font-weight: 900;
         color: inherit;
     }
 }
 
-@media (max-width:480px){
+@media (max-width:480px) {
     .login-container {
         width: 100vw;
         height: 100vh;
